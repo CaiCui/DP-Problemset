@@ -1,0 +1,76 @@
+///基础dp数字三角形,递归和动态规划程序比较
+#include <iostream>
+using namespace std;
+int n=15;
+int D[15][15];
+int MaxSum[20][20];
+int maxsum(int i,int j)//易超时,O(2^n)时间
+{
+    if(i==n)
+      return D[i][j];
+    int x,y;
+    x=maxsum(i+1,j);
+    y=maxsum(i+1,j+1);
+    return max(x,y)+D[i][j];
+
+}
+///记忆性地推
+int maxsum2(int i,int j)
+{
+    if( MaxSum[i][j]!=-1)
+        return MaxSum[i][j];
+    if(i==n)
+        MaxSum[i][j]=D[i][j];
+     else
+     {
+          int x,y;
+          x=maxsum(i+1,j);
+          y=maxsum(i+1,j+1);
+          MaxSum[i][j]=max(x,y)+D[i][j];
+     }
+     return MaxSum[i][j];
+}
+///dp方法:D(r,j):第r行第j个数的值 因为要么往下走，要么往右下走所以
+///下一步只能为D(r+1,j)或者D(r+1,j+1),规定MaxSum(i,j)表示从第i行第j个数走到底层最大值
+///转移方程
+///MaxSum(r,j)=max{MaxSum(r+1,j),MaxSum(r+1,j+1)}+D[r][j]
+///若r==n,MaxSum(r,j)=D(r,j);
+///O(n^2)时间
+int main()
+{
+    int i,j;
+    for(i=1;i<=10;i++)
+     for(j=1;j<=i;j++)
+    {
+        cin>>D[i][j];
+        MaxSum[i][j]=-1;//记忆化搜索初始化
+    }
+    cout<<maxsum(1,1);
+
+    ///dp方法1,人人为我递推型
+    for(i=1;i<=10;i++)
+      for(j=1;j<=i;j++)
+    {
+        cin>>D[i][j];
+    }
+    for(i=1;i<=10;i++)
+        MaxSum[n][i]=D[n][i];
+    for(i=10-1;i>=1;i--)
+        for(j=1;j<=i;j++)
+    {
+        MaxSum[i][j]=max(MaxSum[i+1][j],MaxSum[i+1][j+1])+D[i][j];
+    }
+    cout<<MaxSum[1][1]<<endl;
+
+    ///dp方法二一维滚动数组，空间优化
+    int *sum;
+    sum=D[n];//第n行复制过来
+    for(i=10-1;i>=1;i--)
+        for(j=1;j<=i;j++)
+        {
+            sum[j]=max(sum[j],sum[j+1])+D[i][j];
+        }
+        cout<<sum[1]<<endl;
+
+    return 0;
+}
