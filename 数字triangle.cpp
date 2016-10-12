@@ -1,13 +1,13 @@
-/**¶¯Ì¬¹æ»®01Êı×ÖÈı½ÇĞÎ
+/**åŠ¨æ€è§„åˆ’01æ•°å­—ä¸‰è§’å½¢
   *test.in
   *4
   *1
   *3 2
   *4 10 1
   *4 3 2 20
-  *Çó´ÓÕâ¸öÈı½ÇĞÎ¶¥¶Ë×ßµ½µ×¶Ë×î´óµÄÒ»ÌõÂ·µÄºÍ
+  *æ±‚ä»è¿™ä¸ªä¸‰è§’å½¢é¡¶ç«¯èµ°åˆ°åº•ç«¯æœ€å¤§çš„ä¸€æ¡è·¯çš„å’Œ
   */
-//·½·¨0£ºµİ¹é
+//æ–¹æ³•0ï¼šé€’å½’
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -34,7 +34,7 @@ int main(){
     return 0;
 }
 
-//·½·¨Ò»:dfs»ØËİ
+//æ–¹æ³•ä¸€:dfså›æº¯
 /*
 #include<cstdio>
 #include<cstdlib>
@@ -57,7 +57,7 @@ void dfs(int x,int y,int s)
 }
 int main()
 {
-    freopen("test.in","r",stdin);//¶ÁÈë
+    freopen("test.in","r",stdin);//è¯»å…¥
     ans=0;
     scanf("%d",&n);
     for(int i=1;i<=n;i++)
@@ -69,7 +69,7 @@ int main()
     return 0;
 }
 
-//·½·¨¶ş:¼ÇÒä»¯ËÑË÷,¿Õ¼ä»»Ê±¼ä
+//æ–¹æ³•äºŒ:è®°å¿†åŒ–æœç´¢,ç©ºé—´æ¢æ—¶é—´
 #include<cstdio>
 #include<cstdlib>
 #include<bits/stdc++.h>
@@ -86,7 +86,7 @@ int fmem(int i,int j)
 }
 int main()
 {
-    freopen("test.in","r",stdin);//¶ÁÈë
+    freopen("test.in","r",stdin);//è¯»å…¥
     scanf("%d",&n);
     for(int i=1;i<=n;i++)
         for(int j=1;j<=i;j++)
@@ -96,7 +96,7 @@ int main()
     return 0;
 }
 */
-//·½·¨Èı£º¶¯Ì¬¹æ»® µİÍÆÊ½d(i,j)=a(i,j)+max{a(i+1,j),a(i+1,j+1)} d(i,j):µÚiĞĞjÁĞµÄµ±Ç°µÄÀÛ¼ÓÖµ
+//æ–¹æ³•ä¸‰ï¼šåŠ¨æ€è§„åˆ’ é€’æ¨å¼d(i,j)=a(i,j)+max{d(i+1,j),d(i+1,j+1)} d(i,j):ç¬¬iè¡Œjåˆ—çš„å½“å‰çš„ç´¯åŠ å€¼
 #include<cstdio>
 #include<cstdlib>
 #include<bits/stdc++.h>
@@ -107,13 +107,13 @@ int a[maxn][maxn],d[maxn][maxn];
 int n;
 int main()
 {
-    freopen("test.in","r",stdin);//¶ÁÈë
+    freopen("test.in","r",stdin);//è¯»å…¥
     scanf("%d",&n);
     for(int i=1;i<n;i++)
         for(int j=1;j<=i;j++)
          scanf("%d",&a[i][j]);
     memset(d,-1,sizeof(d));
-    for(int i=1;i<=n;i++)//³õÊ¼»¯µÚËÄĞĞ£¬´ÓµÚËÄĞĞµ½µÚÒ»ĞĞµ¹×ÅµİÍÆ
+    for(int i=1;i<=n;i++)//åˆå§‹åŒ–ç¬¬å››è¡Œï¼Œä»ç¬¬å››è¡Œåˆ°ç¬¬ä¸€è¡Œå€’ç€é€’æ¨
     {
          scanf("%d",&a[n][i]);
          d[n][i]=a[n][i];
@@ -126,10 +126,10 @@ int main()
     printf("result is : %d",d[1][1]);
     return 0;
 }
-½ø½×:ÓÅ»¯dp
- ///dp·½·¨¶şÒ»Î¬¹ö¶¯Êı×é£¬¿Õ¼äÓÅ»¯
+è¿›é˜¶:ä¼˜åŒ–dp
+ ///dpæ–¹æ³•äºŒä¸€ç»´æ»šåŠ¨æ•°ç»„ï¼Œç©ºé—´ä¼˜åŒ–
     int *sum;
-    sum=D[n];//µÚnĞĞ¸´ÖÆ¹ıÀ´
+    sum=D[n];//ç¬¬nè¡Œå¤åˆ¶è¿‡æ¥
     for(i=10-1;i>=1;i--)
         for(j=1;j<=i;j++)
         {
