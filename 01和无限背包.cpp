@@ -85,6 +85,29 @@ int main(void)
       *转化成以C为起点，终点任意！的边权之和最大的路径。
       *只需要把硬币中的maxres[j]=max(maxres[j],maxres[j-V[i]]+1);，变为maxres[j]=max(maxres[j],maxres[j-V[i]]+W[i]);即可。
       */
+    //无限背包
+  #define maxn 1010
+  #define maxv 10010
+  int n, C, v[maxn], w[maxn], f[maxv];
+  //从下到上，从左到右枚举
+   **********************************
+   *  C: 1  2  3  4  5  6  .. N
+   *n
+   *.
+   *.
+   *.
+   *.
+   *2
+   *1                           
+   **********************************
+      scanf("%d%d", &C, &n);
+      for (int i = 1; i <= n; ++i) scanf("%d%d", v+i, w+i);
+      memset(f, 0, sizeof(f));
+      for(int i = 1; i <= C; ++i)
+        for(int j = 1; j <= n; ++j)//每个空间C，都可以选择n个物品，这里是和0-1背包不同的地方。
+          if(i >= v[j] && f[i-v[j]] + w[j] > f[i]) f[i] = f[i-v[j]] + w[j];
+      printf("%d\n", f[C]);
+      
     return 0;
 }
 
